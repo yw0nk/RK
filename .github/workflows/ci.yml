@@ -1,0 +1,24 @@
+name: CMake Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Conf and B
+      run: |
+        cmake -S . -B build
+        cmake --build build
+
+    - name: Run
+      run: ./build/singleton_app
